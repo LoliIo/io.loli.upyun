@@ -15,7 +15,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.loli</groupId>
     <artifactId>upyun</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <url>https://gitcafe.com/shenyefeng/java-sdk-for-UPYUN</url>
     <name>upyun-java-sdk</name>
     <description>upyun java sdk</description>
