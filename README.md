@@ -2,6 +2,12 @@
 ##一个使用Apache HttpClient的简单易用易扩展的Java SDK
 ---
 
+##作者:https://gitcafe.com/shenyefeng/java-sdk-for-UPYUN
+
+
+我只是修改了pom.xml推送到中央仓库中方便自己调用，遵循Apache License 2.0协议发布
+
+---
 基于 [又拍云存储HTTP REST API接口](http://wiki.upyun.com/index.php?title=HTTP_REST_API接口) 开发，适用于Java 5及以上版本。
 
 ## 目录
