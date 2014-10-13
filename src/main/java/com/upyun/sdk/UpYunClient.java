@@ -88,31 +88,26 @@ public class UpYunClient {
         }
     }
 
-    public void uploadFile(String fileName, FileInputStream instream, Integer fileLength)
-            throws UpYunExcetion {
-        try {
-            StringBuffer url = new StringBuffer();
-            for (String str : fileName.split("/")) {
-                if (str == null || str.length() == 0) {
-                    continue;
-                }
-                url.append(fileName + "/");
+    public void uploadFile(String fileName, FileInputStream instream, Integer fileLength) throws UpYunExcetion {
+        StringBuffer url = new StringBuffer();
+        for (String str : fileName.split("/")) {
+            if (str == null || str.length() == 0) {
+                continue;
             }
-            url = url.delete(url.length() - 1, url.length());
-            sign.setUri(url.toString());
-        } catch (UnsupportedEncodingException e) {
-            LogUtil.exception(logger, e);
+            url.append(fileName + "/");
         }
+        url = url.delete(url.length() - 1, url.length());
+        sign.setUri(url.toString());
         sign.setContentLength(fileLength);
         sign.setMethod(HttpMethod.PUT.name());
-        String url = autoUrl + sign.getUri();
+        String url2 = autoUrl + sign.getUri();
         Map<String, String> headers = sign.getHeaders();
         headers.put("mkdir", "true");
 
-        HttpResponse httpResponse = HttpClientUtils.putByHttp(url, headers, instream, fileLength);
+        HttpResponse httpResponse = HttpClientUtils.putByHttp(url2, headers, instream, fileLength);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         }
     }
 
@@ -137,8 +132,8 @@ public class UpYunClient {
 
         HttpResponse httpResponse = HttpClientUtils.getByHttp(url, headers);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         }
 
         HttpEntity entity = httpResponse.getEntity();
@@ -172,8 +167,8 @@ public class UpYunClient {
 
         HttpResponse httpResponse = HttpClientUtils.postByHttp(url, headers);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         }
     }
 
@@ -208,8 +203,8 @@ public class UpYunClient {
 
         HttpResponse httpResponse = HttpClientUtils.deleteByHttp(url, headers);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         }
     }
 
@@ -223,8 +218,8 @@ public class UpYunClient {
         HttpResponse httpResponse = HttpClientUtils.getByHttp(url, headers);
         String resultStr = null;
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         } else {
             try {
                 resultStr = EntityUtils.toString(httpResponse.getEntity());
@@ -276,8 +271,8 @@ public class UpYunClient {
         HttpResponse httpResponse = HttpClientUtils.headByHttp(url, headers);
         FileVo fileVo = null;
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         } else {
             fileVo = new FileVo();
             for (Header header : httpResponse.getAllHeaders()) {
@@ -303,8 +298,8 @@ public class UpYunClient {
         HttpResponse httpResponse = HttpClientUtils.getByHttp(url, headers);
         String resultStr = null;
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse
-                    .getStatusLine().getReasonPhrase());
+            throw new UpYunExcetion(httpResponse.getStatusLine().getStatusCode(), httpResponse.getStatusLine()
+                .getReasonPhrase());
         } else {
             try {
                 resultStr = EntityUtils.toString(httpResponse.getEntity());
