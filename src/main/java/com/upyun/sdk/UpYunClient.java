@@ -96,7 +96,7 @@ public class UpYunClient {
                 if (str == null || str.length() == 0) {
                     continue;
                 }
-                url.append(UrlCodingUtil.encodeBase64(str.getBytes("utf-8")) + "/");
+                url.append(fileName + "/");
             }
             url = url.delete(url.length() - 1, url.length());
             sign.setUri(url.toString());
